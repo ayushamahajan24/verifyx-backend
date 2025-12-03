@@ -33,6 +33,15 @@ HUGGINGFACE_API_KEY = os.getenv("HUGGINGFACE_API_KEY")
 GEMINI_ENDPOINT = f"https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key={GEMINI_API_KEY}"
 
 app = FastAPI(title="Unified Fake News Analyzer", version="0.1.0")
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],            # change "*" to your frontend origin for production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # -----------------------
